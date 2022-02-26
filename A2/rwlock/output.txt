@@ -1,0 +1,16 @@
+TESTSET: Running Testcases with reader preference
+CASE1: Reader Preference with 5 reader and 1 writer
+PASSED
+CASE2: Reader Preference with 5 reader and 3 writer
+PASSED
+CASE3: Reader Preference with 5 reader and 5 writer
+PASSED
+TESTSET: Running Testcases with writer preference
+CASE1: Writer Preference with 5 reader and 1 writer
+PASSED
+CASE2: Writer Preference with 5 reader and 3 writer
+PASSED
+CASE3: Writer Preference with 5 reader and 5 writer
+PASSED
+Test Cases Passed: 6
+Test Cases Total: 6
