@@ -154,8 +154,29 @@ int do_unlink(void)
 
   upgrade_vmnt_lock(vmp);
 
-  if (job_call_nr == VFS_UNLINK)
-	  r = req_unlink(dirp->v_fs_e, dirp->v_inode_nr, fullpath);
+// added //// added //// added //// added //// added //// added //// added //// added //// added //// added //
+  // lookup the inode
+  lookup_init(&stickycheck, resolve.l_path, PATH_RET_SYMLINK, &vmp2, &vp);
+  stickycheck.l_vnode_lock = VNODE_READ;
+  stickycheck.l_vmnt_lock = VMNT_READ;
+  vp = advance(dirp, &stickycheck, fp);
+  // print the inode
+  if (strcmp(vmp->m_mount_path, "/home") == 0) 
+  {
+    printf("<minix3> file deleted: %llu\n", vp->v_inode_nr);
+  }
+  if (vp != NULL) 
+  {
+    // unlock the inode
+    unlock_vnode(vp);
+    // put the inode
+    put_vnode(vp);
+  }
+// added //// added //// added //// added //// added //// added //// added //// added //// added //// added //
+
+  if (job_call_nr == VFS_UNLINK) {
+    r = req_unlink(dirp->v_fs_e, dirp->v_inode_nr, fullpath);
+  }
   else
 	  r = req_rmdir(dirp->v_fs_e, dirp->v_inode_nr, fullpath);
   unlock_vnode(dirp);
