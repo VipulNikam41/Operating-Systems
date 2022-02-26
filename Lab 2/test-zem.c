@@ -7,7 +7,21 @@
 #include <signal.h>
 #include <wait.h>
 #include <pthread.h>
-#include "zemaphore.h"
+// #include "zemaphore.h"
+
+// zemaphore.h // zemaphore.h // zemaphore.h // zemaphore.h
+typedef struct zemaphore 
+{
+  int count;
+  
+  pthread_mutex_t accesslock;
+  pthread_cond_t go_sleepers;
+}zem_t;
+
+void zem_init(zem_t *, int);
+void zem_up(zem_t *);
+void zem_down(zem_t *);
+// zemaphore.h // zemaphore.h // zemaphore.h // zemaphore.h
 
 zem_t child;
 zem_t parent;
